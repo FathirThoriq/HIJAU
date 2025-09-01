@@ -13,17 +13,17 @@
 
     <!-- Card Login -->
 
-    <TextView
+    <com.example.hijau.GradientTextView
         android:id="@+id/textView2"
-        android:layout_width="272dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/poppins_black"
         android:text="REGISTER"
-        android:textAlignment="center"
-        android:textColor="#406241"
         android:textSize="48sp"
         android:textStyle="bold"
+        app:startColor="#436544"
+        app:endColor="#6FA07E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
