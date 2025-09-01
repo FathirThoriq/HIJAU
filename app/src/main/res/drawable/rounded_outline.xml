@@ -2,7 +2,9 @@
     android:shape="rectangle">
 
     <!-- Warna background -->
-    <solid android:color="#E8F3E2"/>
+    <solid android:color="#406241"
+            android:textColor="@color/white"
+        />
 
     <!-- Outline (garis pinggir) -->
     <stroke
@@ -10,7 +12,7 @@
         android:color="#9E9E9E" />
 
     <!-- Corner radius -->
-    <corners android:radius="16dp" />
+    <corners android:radius="35dp" />
 
     <!-- Padding dalam -->
     <padding
