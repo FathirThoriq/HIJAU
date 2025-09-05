@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,64 +7,54 @@
     android:background="@color/white">
 
     <!-- Judul -->
-
-    <!-- Logo -->
     <com.example.hijau.GradientTextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:id="@+id/tvWelcome"
+        android:layout_width="257dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/poppins_black"
         android:text="WELCOME"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:startColor="#436544"
         app:endColor="#6FA07E"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="#436544" />
+
+    <!-- Logo (di bawah judul) -->
+
+    <!-- Card berisi form (di bawah logo) -->
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:id="@+id/ivLogo"
+        android:layout_width="178dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/logo_hijau"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
-
-
-    <!-- Card Login -->
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="172dp"
-        android:contentDescription="@string/app_name"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        app:srcCompat="@drawable/vector"
-        tools:ignore="DuplicateIds" />
+        app:layout_constraintTop_toTopOf="@+id/tvWelcome"
+        app:srcCompat="@drawable/logo_hijau" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
         app:cardBackgroundColor="#E3EED4"
         app:cardCornerRadius="15dp"
-        app:layout_constraintTop_toBottomOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="24dp"
-        android:elevation="8dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Isi form kamu tetap (contoh: Username, Email, Button) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,35 +62,35 @@
             android:padding="16dp">
 
             <EditText
+                android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_black"
                 android:hint="Username"
+                android:fontFamily="@font/poppins_black"
                 android:padding="8dp"
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_black"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:fontFamily="@font/poppins_black"
                 android:padding="8dp"
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/btnSentverif"
+                android:id="@+id/btnSentVerif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#2F4F2F"
                 android:fontFamily="@font/poppins_black"
-                android:text="Sent Verification Code"
+                android:text="Send Verification Code"
                 android:textAllCaps="false"
-
                 android:textColor="@android:color/white" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

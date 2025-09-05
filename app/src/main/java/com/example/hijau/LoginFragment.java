@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import  android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
@@ -67,18 +68,23 @@ public class LoginFragment extends Fragment {
                 return;
             }
 
-            // TODO: Tambahkan logika validasi username & password (misalnya cek ke database)
+            // TODO: Validasi login (misalnya cek ke database / API)
             boolean loginSukses = true; // sementara true biar langsung masuk
 
             if (loginSukses) {
                 Toast.makeText(getActivity(), "Login berhasil!", Toast.LENGTH_SHORT).show();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new DashboardFragment())
-                        .commit();
+
+                // Pindah ke MainActivity
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
+                // Tutup AuthActivity supaya tidak bisa balik pakai tombol Back
+                requireActivity().finish();
             } else {
                 Toast.makeText(getActivity(), "Username / Password salah", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         return view;
     }

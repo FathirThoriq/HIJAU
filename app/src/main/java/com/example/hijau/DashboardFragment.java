@@ -32,10 +32,19 @@ public class DashboardFragment extends Fragment {
 
         // Data dummy produk (isi semua param: nama, kalori, harga, gambar)
         produkList = new ArrayList<>();
-        produkList.add(new Produk("Bayam", "23 Kal", "Rp 2.500/ikat", R.drawable.bayam));
-        produkList.add(new Produk("Tomat", "18 Kal", "Rp 3.000/kg", R.drawable.tomat));
-        produkList.add(new Produk("Apel", "52 Kal", "Rp 5.000/buah", R.drawable.apel));
-        produkList.add(new Produk("Jeruk", "47 Kal", "Rp 4.500/buah", R.drawable.jeruk));
+        produkList.add(new Produk("Seledri", "23 Kal", "Rp 2.500/Ikat", R.drawable.seledri));
+        produkList.add(new Produk("Selada", "18 Kal", "Rp 3.000/Ikat", R.drawable.selada));
+        produkList.add(new Produk("Tomat", "52 Kal", "Rp 30.000/Kg", R.drawable.tomat));
+        produkList.add(new Produk("Wortel", "47 Kal", "Rp 10.000/Kg", R.drawable.wortel));
+        produkList.add(new Produk("Wortel", "47 Kal", "Rp 10.000/Kg", R.drawable.wortel));
+        produkList.add(new Produk("Paprika", "47 Kal", "Rp 10.000/Kg", R.drawable.paprika));
+        produkList.add(new Produk("Bawang Merah", "47 Kal", "Rp 10.000/Kg", R.drawable.bawang_merah));
+        produkList.add(new Produk("Bawang Putih", "47 Kal", "Rp 10.000/Kg", R.drawable.bawang_putih));
+        produkList.add(new Produk("Ketumbar", "47 Kal", "Rp 10.000/Kg", R.drawable.ketumbar));
+
+
+
+
 
         // Set adapter
         produkAdapter = new ProdukAdapter(produkList);

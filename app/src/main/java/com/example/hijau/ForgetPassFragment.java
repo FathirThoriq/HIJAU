@@ -20,7 +20,7 @@ public class ForgetPassFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forget_pass, container, false);
 
         // Ambil tombol dari layout fragment_forget_pass.xml
-        Button btnSentVerif = view.findViewById(R.id.btnSentverif);
+        Button btnSentVerif = view.findViewById(R.id.btnSentVerif);
 
         // Event klik tombol
         btnSentVerif.setOnClickListener(v -> {

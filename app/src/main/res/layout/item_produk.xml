@@ -1,53 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="12dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
+        <!-- Gambar Produk -->
         <ImageView
             android:id="@+id/imgProduk"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
+        <!-- Nama Produk -->
         <TextView
             android:id="@+id/tvNama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
+            android:paddingTop="8dp"
+            android:fontFamily="@font/poppins_black"
             android:text="Nama Produk"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
+        <!-- Kalori -->
         <TextView
             android:id="@+id/tvKalori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_black"
             android:text="14 Cal"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            android:paddingTop="2dp" />
 
-        <TextView
-            android:id="@+id/tvHarga"
-            android:layout_width="wrap_content"
+        <!-- Harga + Tombol -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rp. 2.500/ikat"
-            android:textColor="@android:color/holo_green_dark"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="12dp">
 
-        <Button
-            android:id="@+id/btnTambah"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:backgroundTint="@android:color/holo_green_light"
-            android:text="+"
-            android:textColor="@android:color/white"/>
+            <TextView
+                android:id="@+id/tvHarga"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_black"
+                android:text="Rp. 2.500/ikat"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnTambah"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/hijau_terang"
+                android:text="+"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

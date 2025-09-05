@@ -4,64 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".LoginFragment">
 
     <!-- Judul -->
     <com.example.hijau.GradientTextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         android:fontFamily="@font/poppins_black"
         android:text="WELCOME"
         android:textSize="48sp"
         android:textStyle="bold"
         app:startColor="#436544"
         app:endColor="#6FA07E"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp" />
 
     <!-- Logo -->
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgLogo"
         android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/logo_hijau"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
-
-    <!-- Icon di atas card -->
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="172dp"
-        android:contentDescription="@string/app_name"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        app:srcCompat="@drawable/vector"
-        tools:ignore="DuplicateIds" />
+        android:layout_marginTop="24dp"
+        app:srcCompat="@drawable/logo_hijau" />
 
     <!-- Card Login -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:elevation="8dp"
         app:cardBackgroundColor="#E3EED4"
         app:cardCornerRadius="15dp"
-        app:layout_constraintTop_toBottomOf="@id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/imgLogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="24dp"
-        android:elevation="8dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,10 +59,12 @@
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_black"
                 android:hint="Username"
+                android:inputType="textPersonName"
+                android:backgroundTint="#2F4F2F"
                 android:padding="8dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_black" />
 
             <!-- Password -->
             <EditText
@@ -85,11 +72,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_black"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:backgroundTint="#2F4F2F"
                 android:padding="8dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_black" />
 
             <!-- Tombol Login -->
             <Button
@@ -110,10 +98,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_black"
                 android:text="Lupa Password?"
                 android:textColor="#2F4F2F"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_black" />
 
             <!-- Link Buat Akun -->
             <TextView
@@ -121,11 +109,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/poppins_black"
+                android:layout_marginTop="8dp"
                 android:text="Belum punya akun? Daftar"
                 android:textColor="#2F4F2F"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_black" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <!-- Icon kecil nempel setengah di atas card -->
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="140dp"
+        android:contentDescription="@string/app_name"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/imgLogo"
+        app:srcCompat="@drawable/vector" />
+
+
+    <!-- Icon kecil nempel di atas card -->
+
+
+    <!-- Icon kecil nempel di atas card -->
+    <!-- Icon kecil nempel di atas card -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
