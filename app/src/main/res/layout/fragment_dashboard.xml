@@ -7,26 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".DashboardFragment">
 
-    <!-- Bagian atas (Logo + Search) -->
+    <!-- Bagian atas (Logo) -->
 
+    <!-- Tombol Search -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="183dp"
-        android:layout_height="159dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="188dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/logo_hijau"
+        app:layout_constraintDimensionRatio="183:159"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <!-- Icon Search -->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSearch"
-        android:layout_width="80dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="36dp"
         android:background="@drawable/rounded_bg"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,12 +43,13 @@
         android:id="@+id/imageView2"
         android:layout_width="24dp"
         android:layout_height="24dp"
+
         android:elevation="10dp"
         android:src="@drawable/search"
-        app:layout_constraintTop_toTopOf="@+id/buttonSearch"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonSearch"
-        app:layout_constraintStart_toStartOf="@+id/buttonSearch"
-        app:layout_constraintEnd_toEndOf="@+id/buttonSearch" />
+        app:layout_constraintBottom_toBottomOf="@id/buttonSearch"
+        app:layout_constraintEnd_toEndOf="@id/buttonSearch"
+        app:layout_constraintStart_toStartOf="@id/buttonSearch"
+        app:layout_constraintTop_toTopOf="@id/buttonSearch" />
 
     <!-- Judul -->
     <com.example.hijau.GradientTextView
@@ -49,14 +58,14 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_black"
         android:text="MELIJO HARIANMU"
-        android:textSize="27sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:endColor="#6FA07E"
         app:startColor="#436544"
+        app:endColor="#6FA07E"
         app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp" />
 
     <!-- Kontainer utama (kategori + produk) -->
     <LinearLayout
@@ -87,7 +96,7 @@
                 android:fontFamily="@font/poppins_black"
                 android:text="Sayur"
                 android:textColor="@android:color/white"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonBuah"
@@ -99,7 +108,7 @@
                 android:fontFamily="@font/poppins_black"
                 android:text="Buah"
                 android:textColor="@android:color/white"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonDaging"
@@ -110,7 +119,7 @@
                 android:fontFamily="@font/poppins_black"
                 android:text="Daging"
                 android:textColor="@android:color/white"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Grid Produk -->
@@ -119,19 +128,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="8dp"/>
+            android:padding="8dp" />
     </LinearLayout>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Navigation (FIXED HEIGHT & ALWAYS AT BOTTOM) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
+        android:layout_height="56dp"
         android:background="@drawable/rounded_nav_bg"
+        android:fitsSystemWindows="true"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

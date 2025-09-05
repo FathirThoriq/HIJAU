@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_gradient"
     tools:context=".LoginFragment">
+
 
     <!-- Judul -->
     <com.example.hijau.GradientTextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_black"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins_extrabold"
         android:text="WELCOME"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:startColor="#436544"
         app:endColor="#6FA07E"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="48dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="#1E3D1E" />
 
     <!-- Logo -->
     <ImageView
@@ -59,12 +61,12 @@
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#2F4F2F"
+                android:fontFamily="@font/poppins_extrabold"
                 android:hint="Username"
                 android:inputType="textPersonName"
-                android:backgroundTint="#2F4F2F"
                 android:padding="8dp"
-                android:textSize="14sp"
-                android:fontFamily="@font/poppins_black" />
+                android:textSize="14sp" />
 
             <!-- Password -->
             <EditText
@@ -72,12 +74,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:backgroundTint="#2F4F2F"
+                android:fontFamily="@font/poppins_extrabold"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:backgroundTint="#2F4F2F"
                 android:padding="8dp"
-                android:textSize="14sp"
-                android:fontFamily="@font/poppins_black" />
+                android:textSize="14sp" />
 
             <!-- Tombol Login -->
             <Button
@@ -86,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#2F4F2F"
-                android:fontFamily="@font/poppins_black"
+                android:fontFamily="@font/poppins_extrabold"
                 android:text="LOGIN"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white" />
@@ -98,10 +100,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_extrabold"
                 android:text="Lupa Password?"
                 android:textColor="#2F4F2F"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_black" />
+                android:textSize="12sp" />
 
             <!-- Link Buat Akun -->
             <TextView
@@ -110,10 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_extrabold"
                 android:text="Belum punya akun? Daftar"
                 android:textColor="#2F4F2F"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_black" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -123,7 +125,7 @@
         android:id="@+id/imgIcon"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="148dp"
         android:contentDescription="@string/app_name"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="@id/cardView"

@@ -1,16 +1,16 @@
 package com.example.hijau;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Intent;
 import android.widget.Toast;
-import  android.content.Intent;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class LoginFragment extends Fragment {
@@ -19,72 +19,54 @@ public class LoginFragment extends Fragment {
     private Button btnLogin;
     private TextView tvBuatAkun, tvLupaPassword;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
+    public LoginFragment() {}
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        // Inisialisasi view
         etUsername = view.findViewById(R.id.etUsername);
         etPassword = view.findViewById(R.id.etPassword);
         btnLogin = view.findViewById(R.id.btnLogin);
         tvBuatAkun = view.findViewById(R.id.tvBuatAkun);
         tvLupaPassword = view.findViewById(R.id.tvLupaPassword);
 
-        // Aksi pindah ke RegisterFragment
+        btnLogin.setOnClickListener(v -> {
+            String username = etUsername.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                // Validasi sederhana
+                Toast.makeText(requireContext(), "Username dan Password wajib diisi", Toast.LENGTH_SHORT).show();
+            } else {
+                // TODO: validasi login atau koneksi Firebase
+                // Untuk sementara kita anggap login berhasil
+
+                // Pindah ke MainActivity (dashboard)
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
+                startActivity(intent);
+                requireActivity().finish(); // agar tombol back tidak kembali ke login
+            }
+        });
+
+        // Klik "Belum punya akun? Daftar"
         tvBuatAkun.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction()
+            requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new RegisterFragment())
                     .addToBackStack(null)
                     .commit();
         });
 
-        // Aksi pindah ke LupaPasswordFragment
+        // Klik "Lupa Password?"
         tvLupaPassword.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction()
+            requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ForgetPassFragment())
                     .addToBackStack(null)
                     .commit();
         });
-
-        // Tombol Login
-        btnLogin.setOnClickListener(v -> {
-            String username = etUsername.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
-
-            if (TextUtils.isEmpty(username)) {
-                etUsername.setError("Username wajib diisi");
-                etUsername.requestFocus();
-                return;
-            }
-
-            if (TextUtils.isEmpty(password)) {
-                etPassword.setError("Password wajib diisi");
-                etPassword.requestFocus();
-                return;
-            }
-
-            // TODO: Validasi login (misalnya cek ke database / API)
-            boolean loginSukses = true; // sementara true biar langsung masuk
-
-            if (loginSukses) {
-                Toast.makeText(getActivity(), "Login berhasil!", Toast.LENGTH_SHORT).show();
-
-                // Pindah ke MainActivity
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-
-                // Tutup AuthActivity supaya tidak bisa balik pakai tombol Back
-                requireActivity().finish();
-            } else {
-                Toast.makeText(getActivity(), "Username / Password salah", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         return view;
     }

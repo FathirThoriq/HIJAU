@@ -7,7 +7,7 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth); // activity_auth punya FrameLayout
+        setContentView(R.layout.activity_auth); // activity_auth.xml berisi FrameLayout
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
