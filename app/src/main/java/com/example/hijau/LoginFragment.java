@@ -7,17 +7,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Toast;
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginFragment extends Fragment {
 
-    private EditText etUsername, etPassword;
+    private EditText etEmail, etPassword;
     private Button btnLogin;
     private TextView tvBuatAkun, tvLupaPassword;
+    FirebaseAuth mAuth;
 
     public LoginFragment() {}
 
@@ -28,27 +36,40 @@ public class LoginFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        etUsername = view.findViewById(R.id.etUsername);
+        mAuth = FirebaseAuth.getInstance();
+        etEmail = view.findViewById(R.id.etEmail);  // pastikan EditText ini di XML dipakai untuk email
         etPassword = view.findViewById(R.id.etPassword);
         btnLogin = view.findViewById(R.id.btnLogin);
         tvBuatAkun = view.findViewById(R.id.tvBuatAkun);
         tvLupaPassword = view.findViewById(R.id.tvLupaPassword);
 
         btnLogin.setOnClickListener(v -> {
-            String username = etUsername.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            if (username.isEmpty() || password.isEmpty()) {
-                // Validasi sederhana
-                Toast.makeText(requireContext(), "Username dan Password wajib diisi", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Email dan Password wajib diisi", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO: validasi login atau koneksi Firebase
-                // Untuk sementara kita anggap login berhasil
+                // Login dengan Firebase
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Login sukses
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(requireContext(), "Login berhasil: " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
-                // Pindah ke MainActivity (dashboard)
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                startActivity(intent);
-                requireActivity().finish(); // agar tombol back tidak kembali ke login
+                                    // Contoh: pindah ke activity dashboard
+                                    Intent intent = new Intent(requireActivity(), MainActivity.class);
+                                    startActivity(intent);
+                                    requireActivity().finish();
+                                } else {
+                                    // Gagal login
+                                    Toast.makeText(requireContext(), "Login gagal: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 

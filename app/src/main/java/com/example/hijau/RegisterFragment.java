@@ -16,21 +16,34 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterFragment extends Fragment {
 
-    private EditText etName, etUsername, etPassword, etEmail, etPhone, etAddress, etBirthDate;
+    private EditText etName, etPassword, etEmail, etPhone, etAddress, etBirthDate;
     private Spinner spinnerGender;
     private Button btnSignup;
+    private FirebaseAuth mAuth; // Firebase Auth
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
+        // Init Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Binding view
         etName = view.findViewById(R.id.etName);
-        etUsername = view.findViewById(R.id.etUsername);
         etPassword = view.findViewById(R.id.etPassword);
         etEmail = view.findViewById(R.id.etEmail);
         etPhone = view.findViewById(R.id.etPhone);
@@ -71,7 +84,6 @@ public class RegisterFragment extends Fragment {
         // Tombol Register
         btnSignup.setOnClickListener(v -> {
             String name = etName.getText().toString().trim();
-            String username = etUsername.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String phone = etPhone.getText().toString().trim();
@@ -79,12 +91,44 @@ public class RegisterFragment extends Fragment {
             String birthDate = etBirthDate.getText().toString().trim();
             String gender = spinnerGender.getSelectedItem().toString();
 
-            if (name.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty() || birthDate.isEmpty()) {
+            if (name.isEmpty() || password.isEmpty() || email.isEmpty() || birthDate.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill in all required fields", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO: simpan ke Firebase atau Database
-                Toast.makeText(requireContext(), "Register Success\n" +
-                        "Name: " + name + "\nGender: " + gender + "\nBirth: " + birthDate, Toast.LENGTH_LONG).show();
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String uid = user.getUid();
+
+                                    // Buat map untuk data tambahan
+                                    Map<String, Object> userData = new HashMap<>();
+                                    userData.put("name", name);
+                                    userData.put("email", email);
+                                    userData.put("phone", phone);
+                                    userData.put("address", address);
+                                    userData.put("gender", gender);
+                                    userData.put("birthDate", birthDate);
+
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    db.collection("users").document(uid)
+                                            .set(userData)
+                                            .addOnSuccessListener(aVoid -> {
+                                                Toast.makeText(requireContext(), "Register & simpan data berhasil", Toast.LENGTH_SHORT).show();
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Toast.makeText(requireContext(), "Gagal simpan data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+
+                                // TODO: Simpan data tambahan (name, phone, address, gender, birthDate) ke Firestore / Realtime DB
+                                } else {
+                                    // Register gagal
+                                    Toast.makeText(requireContext(), "Register gagal: " + task.getException().getMessage(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
             }
         });
 
