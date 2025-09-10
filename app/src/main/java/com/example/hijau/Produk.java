@@ -5,12 +5,13 @@ public class Produk {
     private String kalori;
     private String harga;
     private int gambarResId;
+    private String imageURL;
 
-    public Produk(String nama, String kalori, String harga, int gambarResId) {
+    public Produk(String nama, String kalori, String harga, String imageURL) {
         this.nama = nama;
         this.kalori = kalori;
         this.harga = harga;
-        this.gambarResId = gambarResId;
+        this.imageURL = imageURL;
     }
 
     public String getNama() {
@@ -28,4 +29,6 @@ public class Produk {
     public int getGambarResId() {
         return gambarResId;
     }
+
+    public String getImageURL() {return imageURL;}
 }
